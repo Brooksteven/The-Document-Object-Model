@@ -25,9 +25,11 @@ Sources used for this assignment:
 
 5. Event Handling
 - EventTarget: addEventListener() method (https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+-Lecture Notes
 
 6. HTML Attribute Validation
 - MDN - HTMLFormElement (https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement)
+- Lecture Notes
 
 7. Additional Tutorials 
 - JavaScript Tutorial - Master Form Validation (https://www.javascripttutorial.net/javascript-dom/javascript-form-validation/)

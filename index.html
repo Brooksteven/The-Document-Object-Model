@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registration & Login Forms</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+
+<body>
+
+  <!-- Error Display -->
+  <div id="errorDisplay"></div>
+
+  <!-- Registration Form -->
+  <form id="registration">
+    <h2>Register</h2>
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="reg-username" placeholder="Username" required>
+
+    <label for="email">Email:</label>
+    <input type="text" name="email" id="reg-email" placeholder="Email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="reg-password" placeholder="Password" required>
+
+    <label for="passwordCheck">Confirm Password:</label>
+    <input type="password" name="passwordCheck" id="reg-passwordCheck" placeholder="Confirm Password" required>
+
+    <label>
+      <input type="checkbox" name="terms" id="reg-terms"> I agree to the terms and conditions
+    </label>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <!-- Login Form -->
+  <form id="login">
+    <h2>Login</h2>
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="login-username" placeholder="Username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="login-password" placeholder="Password" required>
+
+    <label>
+      <input type="checkbox" name="persist" id="persist"> Keep me logged in
+    </label>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <script src="src/index.js"></script>
+</body>
+
+</html>

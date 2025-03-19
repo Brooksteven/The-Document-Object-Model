@@ -14,7 +14,7 @@ const loginUsername = loginForm.elements["username"];
 const loginPassword = loginForm.elements["password"];
 const rememberMe = loginForm.elements["persist"];
 
-// === Registration Form Validation ===
+//  !!Registration Form Validation !!
 
 //Here are the Event Listeners, which listen for when the user submits form and triggers validation functions.
 //(Ignore, personal Note: Without Event Listeners nothing would happen when users submit forms. Nothing would be validated.)
@@ -45,6 +45,7 @@ function validate(event) {
     errorDisplay.style.display = "block"; // Requirement: Modify style property using style(5%)
     //this focuses the cursor back to this input field
     form.elements["username"].focus();
+    //This yet but this stops the form from continuing. If it returned true then the form continues.
     return false;
   }
 
@@ -70,7 +71,6 @@ function validate(event) {
   }
 
   // Continue validation - Password 
-  //
   if (form.elements["password"].value.length < 12) {
     errorDisplay.textContent = "Password must be at least 12 characters.";
     form.elements["password"].focus();
@@ -104,3 +104,72 @@ function validate(event) {
   return true;
 }
 
+// === Form processing ===
+function processForm() {
+    //localStorage.getItem("users") = Will get previously saved user data (that's stored as a string)
+    //JSON.parse = Converts the user data aka string back into an object so we can work with it in JavaScript
+    // || {} = If this is the users ("users") first time visiting the site and the user doesn't exist yet
+    //it will transfer that users information aka data to an empty object {}
+    //We do this to keep track of all the registered users on the site (locally in the browser, not the server which we'll learn more about that I'm sure in lecture).
+    //.getItem needs a key to fetch
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || {};
+    //Here we are grabbing the entered username from the form and then convert it to lowercase using .toLowerCase
+    //Then we are trimming aka removing the extra spaces before/after the username.
+    //This makes since when I sometimes enter my username capitalized and sometimes lowercase because regardless (if it's in the code)
+    //my name will be turned to lower case. This helps with preventing duplicates, so does trim with eliminating extra space which could register as a different username
+    const newUsername = form.elements["username"].value.toLowerCase().trim();
+  
+    //If the newUsername is already stored then the error will be thrown and they will need to choose a different username.
+    if (storedUsers[newUsername]) {
+      errorDisplay.textContent = "This username is already taken.";
+      form.elements["username"].focus();
+      return false;
+    }
+  
+
+//Once they choose a username that isn't already taken then it will come here and a new object representing the new users
+//will be created. 
+//The username is already cleaned up with lowercase and trim and now we are cleaning up email 
+//We don't need to do this for password because password is case-sensitive and space sensitive.
+    const newUser = {
+      username: newUsername,
+      email: form.elements["email"].value.toLowerCase().trim(),
+      password: form.elements["password"].value,
+    };
+  
+    //Here we are saving/storing the new user to storedUsers object that was created above.
+    //the storedUsers object will then get stored into the localStorage under the key "users".
+    //this information won't disappear when the page reloads unless we manually clear it.
+    //JSON.stringify converts the object we have stored into storedUsers into and string when saving it.
+    //.setItem saves data into localStorage and it has to have a key ("users") and value that can convert into a string or it won't save. 
+    //localStorage can only store stings
+    storedUsers[newUsername] = newUser;
+    localStorage.setItem("users", JSON.stringify(storedUsers));
+  
+    // Requirement: Create element using createElement (5%)
+    //Here we are adding a success message to the form so the user can have feedback that the task was a success.
+    //with this code alone the text wont show. I want it to appear at the bottom when we click submit. This will happen by the addEventListener we created,
+    //and then the validate() function we created will run and then call processForm() and inside processForm() this code runs.
+    let successMsg = document.createElement("p");
+    successMsg.textContent = "Registration successful!";
+    successMsg.style.color = "green";
+    
+    // Requirement: appendChild to DOM (5%)
+    //Here is where we add the success message into the HTML
+    //.appendChild adds it to the bottom, so when it is triggered it will show at the bottom.
+    form.appendChild(successMsg);
+  
+    // Requirement: DocumentFragment (2%)
+    //Here we are creating the Document Fragment which is the container we will be holding our DOM node <p>, but we haven't appended it yet so it's not yet on the DOM.
+    //the Document Fragment is just a holding space for the nodes before putting them into the actual DOM.
+    let frag = document.createDocumentFragment();
+    //Here is the node that we are creating for the Document Fragment to hold, but it still hasn't been added to the Document Fragment here. We will need to append it into the Document Fragment first
+    //and then we can append it to the form
+    let thanksMsg = document.createElement("p");
+    thanksMsg.textContent = "Thank you for registering!";
+    //Here is where we actually put everything we created inside the DocFrag, in this case its the <p>.
+    frag.appendChild(thanksMsg);
+    //Here is where we add everything we created and put inside the DocFrag to the form. It will append to the bottom. 
+    //.appendChild always adds to the bottom.
+    form.appendChild(frag);
+  

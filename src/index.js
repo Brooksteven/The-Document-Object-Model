@@ -48,4 +48,59 @@ function validate(event) {
     return false;
   }
 
- 
+  // Example: Modifying an attribute dynamically (3%)
+  //Here we are dynamically changing the placeholder, but only after validation attempt. Before it will just say "Username" from the placeholder I set in the html.
+  form.elements["username"].setAttribute("placeholder", "Enter your username here!");
+
+  // Continue validations - Email
+  if (form.elements["email"].value === "") {
+    errorDisplay.textContent = "Please provide an email.";
+    form.elements["email"].focus();
+    return false;
+  }
+
+  //Ensuring email input will have @ and .
+  let emailCheck = form.elements["email"].value;
+  let atpos = emailCheck.indexOf("@");
+  let dotpos = emailCheck.lastIndexOf(".");
+  if (atpos < 1 || dotpos - atpos < 2) {
+    errorDisplay.textContent = "Please enter a valid e-mail address.";
+    form.elements["email"].focus();
+    return false;
+  }
+
+  // Continue validation - Password 
+  //
+  if (form.elements["password"].value.length < 12) {
+    errorDisplay.textContent = "Password must be at least 12 characters.";
+    form.elements["password"].focus();
+    return false;
+  }
+
+  //Ensuring theres at least one number in the password
+  //if anything less than 0 is returned then the error will be thrown
+  if (form.elements["password"].value.search(/[0-9]/) < 0) {
+    errorDisplay.textContent = "Password must contain a number.";
+    form.elements["password"].focus();
+    return false;
+  }
+
+  //Ensuring passwords for password and passwordCheck match. If != then the error message will be thrown.
+  if (form.elements["password"].value != form.elements["passwordCheck"].value) {
+    errorDisplay.textContent = "Passwords do not match.";
+    form.elements["passwordCheck"].focus();
+    return false;
+  }
+
+  //if terms aren't checked then error is thrown
+  if (form.elements["terms"].checked == false) {
+    errorDisplay.textContent = "You must agree to the terms.";
+    form.elements["terms"].focus();
+    return false;
+  }
+
+  // Proceed to form processing
+  processForm();
+  return true;
+}
+

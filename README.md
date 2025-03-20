@@ -86,7 +86,7 @@ The forms check to make sure users fill out all the fields correctly before they
 
 5. **Event Handling**
 - [EventTarget: addEventListener() method](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
--Lecture Notes
+- Lecture Notes
 
 6. **HTML Attribute Validation**
 - [MDN - HTMLFormElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement)
@@ -105,4 +105,14 @@ The forms check to make sure users fill out all the fields correctly before they
 - [MDN - JSON.parse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
 - [MDN - JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
 - [Visualstudio.com - Markdown](https://code.visualstudio.com/docs/languages/markdown#:~:text=VS%20Code%20supports%20Markdown%20files,and%20start%20working%20with%20it.)
-- [Freecodecamp.org](https://www.freecodecamp.org/news/how-to-use-markdown-in-vscode/)
+- [Freecodecamp.org - MArkdown](https://www.freecodecamp.org/news/how-to-use-markdown-in-vscode/)
+- [How to create a Professional README](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
+
+---
+
+ ## Questions?
+  ### Reach me here: 
+  **Brooklynn Stevenson** 
+  Steven.lynn.brooks@gmail.com
+  [LinkedIn](https://www.linkedin.com/in/brooklynn-stevenson/)
+  [GitHub](https://github.com/Brooksteven)

@@ -116,6 +116,6 @@ The forms check to make sure users fill out all the fields correctly before they
  ## Questions?
   ### Reach me here: 
   **Brooklynn Stevenson** 
-  Steven.lynn.brooks@gmail.com
+  * Steven.lynn.brooks@gmail.com
   * [LinkedIn](https://www.linkedin.com/in/brooklynn-stevenson/)
   * [GitHub](https://github.com/Brooksteven)

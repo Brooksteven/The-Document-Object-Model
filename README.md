@@ -89,6 +89,7 @@ The forms check to make sure users fill out all the fields correctly before they
 5. **Event Handling**
 - [EventTarget: addEventListener() method](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
 - Lecture Notes
+- [Learn JavaScript MOUSE EVENTS in 10 minutes!](https://www.youtube.com/watch?v=g_vXSKbfUiQ)
 
 6. **HTML Attribute Validation**
 - [MDN - HTMLFormElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement)

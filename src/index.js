@@ -104,7 +104,7 @@ function validate(event) {
   return true;
 }
 
-// === Form processing ===
+//  !!Form processing!!
 function processForm() {
     //localStorage.getItem("users") = Will get previously saved user data (that's stored as a string)
     //JSON.parse = Converts the user data aka string back into an object so we can work with it in JavaScript
@@ -173,3 +173,140 @@ function processForm() {
     //.appendChild always adds to the bottom.
     form.appendChild(frag);
   
+
+    // Requirement: Iterate over collection of elements (10%)
+    //Here we are clearing the form fields after the user has succesfully registered by selecting all the type text and password.
+    //Without clearing the form, the form will stay filled after the submit button is clicked
+    let inputs = form.querySelectorAll("input[type='text'], input[type='password']");
+     for (var i = 0; i < inputs.length; i++) {
+        //this is what clears the input fields 
+       inputs[i].value = "";
+     }
+     form.elements["terms"].checked = false;
+   
+     // Requirement: BOM usage (reload + alert = 3%)
+     //Here, we are using the BOM to reload the page and alert the user. 
+     alert("Page will reload now!");
+     window.location.reload();
+   }
+   
+   // !!Login Form Validation!!
+   //Here we are doing the samething we did for the registration form
+   //Here we are validating the user
+   function validateLogin(event) {
+    //stop page from reloading automatically
+     event.preventDefault();
+   
+     //Check username exist 
+     //Here we are calling validateLoginUsername
+     //This will check inside the function to see if the username exist by looking inside localStorage, but
+     //this will only happen inside the function I create which will be called validateLoginUsername()
+     //if it's not already in the localStorage it will return false; if it's already in localstorage in will be true and then
+     //check the password
+     let usernameValid = validateLoginUsername();
+     if (usernameValid == false) {
+       return false;
+     }
+   
+     //Here we are checking if the password is valid by taking the username we got and checks to 
+     //see if the password matches the same password in the local storage. 
+     //If password doesn't match then we will stop here 
+     //If it does match then it will be loginSuccess()
+     let passwordValid = validateLoginPassword(usernameValid);
+     if (passwordValid == false) {
+       return false;
+     }
+     loginSuccess();
+     //validation process complete for the user login
+     return true;
+   }
+   
+
+   //This function is called when the username is trying to be validated during the login process
+   function validateLoginUsername() {
+    //This is a repeat of what I already did for the username in the register form
+    //loginUsername.value: Here the username input is being grabed from the login form 
+    //.toLowerCase() turns username input to lowercase
+    //.trim() removes extra spaces before or after the username
+     let enteredUsername = loginUsername.value.toLowerCase().trim();
+     //"users": is the key (similar to a folder that stores data and where you can go to get that data of users in the localStorage. It should be a list of the users.) thats used in localStorage. Similar to a folder
+     //.getItem() reads the data from the local storage
+     //JSON.parse: change username string into a object so JavaScript can work with it
+     //to prevent null, I added || {} to give storedUsers an empty object so an error wouldn't be thrown later down the line when we do storedUsers[enteredUsername]
+     //This will give info in localStorage ("users") or it will give an empty object if nothin is there which will be null
+     const storedUsers = JSON.parse(localStorage.getItem("users")) || {};
+   
+     //if username input is empty then throw error
+     if (enteredUsername == "") {
+       errorDisplay.textContent = "Username cannot be blank.";
+       loginUsername.focus();
+       return false;
+     }
+   
+     //If the entered username doesn't exist inside storedUsers object {} throw error
+     if (!storedUsers[enteredUsername]) {
+       errorDisplay.textContent = "Username not found. You need to register!";
+       loginUsername.focus();
+       return false;
+     }
+     //returning the clean username string and now pass it to function validateLoginPassword to continue validation of the user.
+     return enteredUsername;
+   }
+   
+
+   //Here we are checking to make sure the password matches for the user.
+   //We do the same thing here as above
+   function validateLoginPassword(validUsername) {
+     const storedUsers = JSON.parse(localStorage.getItem("users")) || {};
+     let enteredPassword = loginPassword.value;
+   
+     //if no password was entered then throw error
+     if (enteredPassword == "") {
+       errorDisplay.textContent = "Password cannot be blank.";
+       loginPassword.focus();
+       return false;
+     }
+   
+     //if the password linked to this username is not the same as the entered password then throw error
+     if (storedUsers[validUsername].password !== enteredPassword) {
+       errorDisplay.textContent = "Incorrect password.";
+       loginPassword.focus();
+       return false;
+     }
+
+     //the password entered matches the password in localStorage for the username entered
+     //now we go back to validateLogin() and then run through "if (passwordValid == false)" and skip return false and will call
+     //loginSuccess()
+     return true;
+   }
+   
+   //Throw this message after user has a successful login process 
+   //this is the end of the validateLogin() function after username and password have both been verified
+   function loginSuccess() {
+    //creating a <p> but won't be in the DOM until we append it
+    let loginMsg = document.createElement("p")
+    
+    //If remember me checkbox is checked then "login sucess. stay logged in" and if if login is a success but the box isn't checked then "login successful"
+    if (rememberMe.checked) {
+        loginMsg.textContent = "Login successful! You will stay logged in."
+    } else{
+        loginMsg.textContent = "Login successful!"
+    }
+
+    //color of text will be green 
+    loginMsg.style.color = "green"
+    //add the <p> text into the DOM for the login form. It will show at the bottom of login form
+    loginForm.appendChild(loginMsg)
+
+    //Here we are selecting all the input fields inside the loginForm that are either type text or type password.
+    //We are gathering both the username field and the password field into a NodeList (kind of like an array)
+     let loginInputs = loginForm.querySelectorAll("input[type='text'], input[type='password']");
+     for (var i = 0; i < loginInputs.length; i++) {
+        //this is what clears the inputs by leaving an empty string for value
+       loginInputs[i].value = "";
+     }
+     //this unchecks the remember me checkbox after the login was successful
+     rememberMe.checked = false;
+   }
+   
+   

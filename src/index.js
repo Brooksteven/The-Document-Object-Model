@@ -28,6 +28,7 @@ loginForm.addEventListener("submit", validateLogin);
 //(Ignore,  personal Note: We love event.preventDefault because without it the form would refresh the page before validation happens)
 function validate(event) {
   event.preventDefault(); // Requirement: DOM event-based validation (5%)
+  console.log("Registration form submitted")
 
   // Requirement: Modify textContent in response to interaction using textContent(10%)
   //This checks if the firstChild is a text node and clears it.
@@ -99,13 +100,16 @@ function validate(event) {
     return false;
   }
 
+
   // Proceed to form processing
+  console.log("Registration from validation is successful!")
   processForm();
   return true;
 }
 
 //  !!Form processing!!
 function processForm() {
+    console.log("Processing registration form")
     //localStorage.getItem("users") = Will get previously saved user data (that's stored as a string)
     //JSON.parse = Converts the user data aka string back into an object so we can work with it in JavaScript
     // || {} = If this is the users ("users") first time visiting the site and the user doesn't exist yet
@@ -121,6 +125,7 @@ function processForm() {
   
     //If the newUsername is already stored then the error will be thrown and they will need to choose a different username.
     if (storedUsers[newUsername]) {
+        console.log("username already taken:", newUsername)
       errorDisplay.textContent = "This username is already taken.";
       form.elements["username"].focus();
       return false;
@@ -196,6 +201,7 @@ function processForm() {
    function validateLogin(event) {
     //stop page from reloading automatically
      event.preventDefault();
+     console.log("Login form submitted")
    
      //Check username exist 
      //Here we are calling validateLoginUsername

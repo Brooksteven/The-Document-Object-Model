@@ -45,17 +45,19 @@ The forms check to make sure users fill out all the fields correctly before they
 
 ## How to Try It Out
 
-1. Open the `index.html` file in your web browser (like Chrome or Firefox).
-2. Fill out the registration form and click the button to register.
-3. If everything is good, you’ll see a success message.
-4. Then you can log in using the login form.
+1. Clone or download this repository.
+2. Navigate to the project folder on your computer.
+3. Open the `index.html` file in your web browser (like Chrome or Firefox).
+4. Fill out the registration form and click the button to register.
+5. If everything is good, you’ll see a success message.
+6. Then you can log in using the login form.
 
 ---
 
 ## Extra Info
 
 - All the information is saved in your browser only. If you clear your browser data, the users will be deleted.
-- This is a **beginner project** just to practice working with forms and local storage.
+- This is a **beginner project** just to practice working with The DOM, forms, and practice local storage.
 
 ---
 
@@ -114,5 +116,5 @@ The forms check to make sure users fill out all the fields correctly before they
   ### Reach me here: 
   **Brooklynn Stevenson** 
   Steven.lynn.brooks@gmail.com
-  [LinkedIn](https://www.linkedin.com/in/brooklynn-stevenson/)
-  [GitHub](https://github.com/Brooksteven)
+  * [LinkedIn](https://www.linkedin.com/in/brooklynn-stevenson/)
+  * [GitHub](https://github.com/Brooksteven)
